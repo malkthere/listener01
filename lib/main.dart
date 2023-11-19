@@ -10,6 +10,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
+  String value = "";
+  TextEditingController mycontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +25,7 @@ class _State extends State<MyApp> {
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: TextField(
+                    controller: mycontroller,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'User Name',
@@ -33,6 +36,10 @@ class _State extends State<MyApp> {
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: TextField(
+                    onChanged: (text) {
+                      value = text;
+                      print(value);
+                    },
                     obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -45,7 +52,10 @@ class _State extends State<MyApp> {
                   //textColor: Colors.white,
                   //color: Colors.blue,
                   child: Text('Sign In'),
-                  onPressed: (){},
+                  onPressed: (){
+                    print("passwprd is "+value);
+                    print("usernam is "+mycontroller.text);
+                  },
                 )
               ],
             )
