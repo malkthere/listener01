@@ -25,27 +25,28 @@ class _State extends State<MyApp> {
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: TextField(
-                    controller: mycontroller,
+
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'User Name',
                       hintText: 'Enter Your Name',
                     ),
+                    onChanged: (text) {
+                      value = text;
+                      print(value);
+                    },
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: TextField(
-                    onChanged: (text) {
-                      value = text;
-                      print(value);
-                    },
                     obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                       hintText: 'Enter Password',
                     ),
+                    controller: mycontroller,
                   ),
                 ),
                 ElevatedButton(
@@ -53,8 +54,8 @@ class _State extends State<MyApp> {
                   //color: Colors.blue,
                   child: Text('Sign In'),
                   onPressed: (){
-                    print("passwprd is "+value);
-                    print("usernam is "+mycontroller.text);
+                    print("The Username is "+value);
+                    print("the Password is "+mycontroller.text);
                   },
                 )
               ],
