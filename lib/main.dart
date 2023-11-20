@@ -10,6 +10,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
+  void _showDialog(BuildContext context) {
+// flutter defined function
+    showDialog(
+      context: context, builder: (BuildContext context) {
+// return object of type Dialog
+      return AlertDialog(
+        title: Text("Alert Message"),
+        // Retrieve the text which the user has entered by
+        // using the TextEditingController.
+        content: Text(mycontroller.text),
+        actions: <Widget>[
+          new ElevatedButton(
+            child: new Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      );
+    },
+    );
+  }
   String value = "";
   TextEditingController mycontroller = TextEditingController();
   @override
@@ -25,7 +47,6 @@ class _State extends State<MyApp> {
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: TextField(
-
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'User Name',
@@ -40,6 +61,7 @@ class _State extends State<MyApp> {
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: TextField(
+                    maxLength: 8,
                     obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -53,9 +75,10 @@ class _State extends State<MyApp> {
                   //textColor: Colors.white,
                   //color: Colors.blue,
                   child: Text('Sign In'),
-                  onPressed: (){
+                   onPressed: (){
                     print("The Username is "+value);
                     print("the Password is "+mycontroller.text);
+                    _showDialog(context);
                   },
                 )
               ],
